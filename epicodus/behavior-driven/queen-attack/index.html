@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Queen Attack!</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Enter queen's origin and destincation coordinates:</h1>
+
+      <form>
+        <div class="form-group">
+          <label for="xCor1">Enter a Queen's X-origin coordinate.</label>
+          <input id="xCor1" type="text">
+        </div>
+          <div class="form-group">
+          <label for="yCor1">Enter a Queen's Y-origin coordinate.</label>
+          <input id="yCor1" type="text">
+        </div>
+          <div class="form-group">
+          <label for="xCor2">Enter a Queen's X-destination coordinate.</label>
+          <input id="xCor2" type="text">
+        </div>
+          <div class="form-group">
+          <label for="yCor2">Enter a Queen's Y-destination coordinate.</label>
+          <input id="yCor2" type="text">
+        </div>
+
+        <button type="submit" class="btn">Check legal move</button>
+      </form>
+
+      <div id="result">
+        <p>The entered coordinate is <span class="not"></span> a valid move for the queen.</p>
+      </div>
+    </div>
+  </body>
+</html>
