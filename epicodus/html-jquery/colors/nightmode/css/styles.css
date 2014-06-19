@@ -1,0 +1,13 @@
+.night-background {
+    background-color: black;
+}
+.night-text {
+    color: green;
+}
+
+.day-background {
+    background-color: white;
+}
+.day-text {
+    color: black;
+}
