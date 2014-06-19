@@ -1,0 +1,19 @@
+.task {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.completed {
+	cursor: pointer;
+	text-decoration: line-through;
+}
+
+.list {
+  cursor: pointer;
+  color: #0088cc;
+}
+
+.list:hover {
+  text-decoration: underline;
+}
+

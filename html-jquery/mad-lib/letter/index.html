@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Dear User</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Fill out for a letter!</h1>
+      <div id="blanks">
+        <form>
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input id="name" class="form-control" type="text">
+          </div>
+
+          <button type="submit" class="btn">Show me the story!</button>
+        </form>
+      </div>
+
+      <div id="letter">
+        <h1>The letter</h1>
+        <p>Dear <span class="name"></span>,</p>
+          <p>How's it going, <span class="name"></span>? Things are going well in Portland. Hope you're well. I'm glad we're friends, <span class="name"></span>.</p>
+          <p>Sincerely,</p>
+          <p>Parker</p>
+      </div>
+    </div>
+  </body>
+</html>

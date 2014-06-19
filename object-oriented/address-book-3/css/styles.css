@@ -1,0 +1,17 @@
+#show-contact {
+  display: none;
+}
+
+#edit-contact-div {
+    display: none;
+}
+
+.contact {
+  cursor: pointer;
+  color: #0088cc;
+}
+
+.contact:hover {
+  text-decoration: underline;
+}
+

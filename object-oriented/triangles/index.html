@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Objectifying Triangles</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Triangles!</h1>
+
+      <div class="row">
+        <div class="col-md-3">
+          <h2>Add a triangle:</h2>
+          <form id="new-triangle">
+            <div class="form-group">
+              <label for="new-side1">Side 1</label>
+              <input type="text" class="form-control" id="new-side1">
+            </div>
+            <div class="form-group">
+              <label for="new-side2">Side 2</label>
+              <input type="text" class="form-control" id="new-side2">
+            </div>
+            <div class="form-group">
+              <label for="new-side3">Side 3</label>
+              <input type="text" class="form-control" id="new-side3">
+            </div>
+
+            <button type="submit" class="btn">Add</button>
+          </form>
+          </div>
+          <div class="col-md-3">
+  <div id="show-equilateral">
+    <h2>Equilateral</h2>
+        <ul id="equilateral-list">
+        </ul>
+  </div></div>
+             <div class="col-md-3">
+  <div id="show-isosceles">
+    <h2>Isosceles</h2>
+        <ul id="isosceles-list">
+        </ul>
+  </div></div>
+    <div class="col-md-3">
+  <div id="show-scalene">
+    <h2>Scalene</h2>
+        <ul id="scalene-list">
+        </ul>
+  </div>
+</div>
+      </div>
+    </div>
+  </body>
+</html>
