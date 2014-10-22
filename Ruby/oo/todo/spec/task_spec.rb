@@ -1,5 +1,6 @@
 require 'rspec'
 require 'task'
+require 'list'
 
 describe Task do
     it 'is initialized with a description' do
@@ -14,6 +15,10 @@ end
 
 describe List do
     it 'starts out with an empty list of tasks' do
+        test_list = List.new('School stuff')
+        test_list.tasks.should eq []
+    end
+    it 'can add tasks' do
         test_list = List.new('School stuff')
         test_task = Task.new('Learn ruby')
         test_list.add_task(test_task)

@@ -1,52 +1,91 @@
 require './lib/task'
+require './lib/list'
 
-@list = []
+@macro_list = []
 
 def main_menu
     loop do
-        puts "Press 'a' to add a task or 'l' to list all of your tasks."
+        puts "Press 'l' to list all of your lists."
         puts "Press 'x' to exit."
         puts "Press 'c' to mark a task complete."
         main_choice = gets.chomp
         if main_choice == 'a'
             add_task
-        elsif main_choice == 'l'
+        elsif main_choice == 't'
             list_tasks
+        elsif main_choice == 'l'
+            list_lists
         elsif main_choice == 'x'
             puts "Good-bye!"
             exit
-        elsif main_choice == 'c'
-            mark_complete
         else
             puts "\nSorry, that wasn't a valid option.\n"
         end
     end
 end
 
-def add_task
-    puts "Enter a description of the new task:"
+def add_task(list)
+    puts "\nEnter a description of the new task:"
     user_description = gets.chomp
-    @list << Task.new(user_description)
+    list.add_task(Task.new(user_description))
     puts "Task added.\n\n"
 end
 
-def list_tasks
-    puts "\nHere are all of your tasks:"
-    menu_counter = 1
-    @list.each do |task|
-        if not task.complete?
-            puts "#{menu_counter}: #{task.description}"
-            menu_counter += 1
-        end
-    end
-    puts "\n"
+def add_list
+    puts "\nEnter a description of the new list:"
+    user_description = gets.chomp
+    @macro_list << List.new(user_description)
 end
 
-def mark_complete
+def list_lists
+    loop do
+        puts "\nHere are all of your lists:"
+        menu_counter = 1
+        @macro_list.each do |list|
+            puts "#{menu_counter}: #{list.description}"
+            menu_counter += 1
+        end
+        puts "\n\nPress '#' to choose a list, or 'x' to exit to main menu.\n"
+        puts "Press 'a' to add a list.\n"
+        menu_choice = gets.chomp
+        if menu_choice == 'x'
+            return
+        elsif menu_choice == 'a'
+            add_list
+        else
+                list_tasks(menu_choice.to_i)
+        end
+    end
+end
+
+def list_tasks(choice)
+    loop do
+        temp_list = @macro_list[choice - 1]
+        puts "\nHere are all of your tasks in list #{temp_list.description}:"
+        menu_counter = 1
+        temp_list.tasks.each do |task|
+            if not task.complete?
+                puts "#{menu_counter}: #{task.description}"
+            end
+            menu_counter += 1
+        end
+        puts "\n\nPress 'a' to add a task, or 'c' to toggle a task complete."
+        puts "Press 'x' to return to the list menu.\n"
+        menu_selection = gets.chomp
+        if menu_selection == 'x'
+            return
+        elsif menu_selection == 'a'
+            add_task(temp_list)
+        elsif menu_selection == 'c'
+            mark_complete(temp_list)
+        end
+    end
+end
+
+def mark_complete(list)
     puts "\nWhich task would you like to complete?"
-    list_tasks
     menu_selection = gets.chomp
-    @list[menu_selection.to_i - 1].complete_toggle
+    list.tasks[menu_selection.to_i - 1].complete_toggle
 end
 
 main_menu
