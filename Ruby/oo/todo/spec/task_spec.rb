@@ -12,4 +12,11 @@ describe Task do
     end
 end
 
-
+describe List do
+    it 'starts out with an empty list of tasks' do
+        test_list = List.new('School stuff')
+        test_task = Task.new('Learn ruby')
+        test_list.add_task(test_task)
+        test_list.tasks.should eq [test_task]
+    end
+end
