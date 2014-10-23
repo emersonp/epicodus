@@ -19,4 +19,12 @@ class Task
             @complete = true
         end
     end
+
+    def set_priority(value)
+        @priority = value
+    end
+
+    def priority
+        @priority
+    end
 end

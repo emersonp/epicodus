@@ -53,14 +53,14 @@ def list_lists
         elsif menu_choice == 'a'
             add_list
         else
-                list_tasks(menu_choice.to_i)
+            list_tasks(menu_choice.to_i)
         end
     end
 end
 
-def list_tasks(choice)
+def list_tasks(list_choice)
     loop do
-        temp_list = @macro_list[choice - 1]
+        temp_list = @macro_list[list_choice - 1]
         puts "\nHere are all of your tasks in list #{temp_list.description}:"
         menu_counter = 1
         temp_list.tasks.each do |task|
@@ -70,6 +70,7 @@ def list_tasks(choice)
             menu_counter += 1
         end
         puts "\n\nPress 'a' to add a task, or 'c' to toggle a task complete."
+        puts "Press 'p' to set a tasks priority value.\n"
         puts "Press 'x' to return to the list menu.\n"
         menu_selection = gets.chomp
         if menu_selection == 'x'
@@ -78,6 +79,8 @@ def list_tasks(choice)
             add_task(temp_list)
         elsif menu_selection == 'c'
             mark_complete(temp_list)
+        elsif menu_selection == 'p'
+            set_priority(temp_list)
         end
     end
 end
@@ -87,5 +90,16 @@ def mark_complete(list)
     menu_selection = gets.chomp
     list.tasks[menu_selection.to_i - 1].complete_toggle
 end
+
+def set_priority(list)
+    loop do
+        puts "Please enter a rating between 1 and 5.\n"
+        priority_val = gets.chomp.to_i
+        if priority_val >= 1 and priority_val <= 5
+            list.set_priority(priority_val)
+            return
+        end
+    end
+
 
 main_menu
