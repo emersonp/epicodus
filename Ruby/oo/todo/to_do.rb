@@ -65,7 +65,7 @@ def list_tasks(list_choice)
         menu_counter = 1
         temp_list.tasks.each do |task|
             if not task.complete?
-                puts "#{menu_counter}: #{task.description}"
+                puts "#{menu_counter}: #{task.description}\t\t#{task.priority}"
             end
             menu_counter += 1
         end
@@ -86,20 +86,23 @@ def list_tasks(list_choice)
 end
 
 def mark_complete(list)
-    puts "\nWhich task would you like to complete?"
+    puts "\nWhich task would you like to complete?\n"
     menu_selection = gets.chomp
     list.tasks[menu_selection.to_i - 1].complete_toggle
 end
 
 def set_priority(list)
+    puts "\nFor which task would you like to set the priority?\n"
+    task_selection = gets.chomp
     loop do
         puts "Please enter a rating between 1 and 5.\n"
         priority_val = gets.chomp.to_i
         if priority_val >= 1 and priority_val <= 5
-            list.set_priority(priority_val)
+            list.tasks[task_selection.to_i - 1].set_priority(priority_val)
             return
         end
     end
+end
 
 
 main_menu

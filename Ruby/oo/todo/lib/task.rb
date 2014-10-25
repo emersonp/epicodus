@@ -2,6 +2,7 @@ class Task
     def initialize(description)
         @description = description
         @complete = false
+        @priority = 3
     end
 
     def description
