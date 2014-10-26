@@ -2,6 +2,7 @@ class Contact
     def initialize(first, last)
         @first = first
         @last = last
+        @phone = []
     end
     
     def first
@@ -16,8 +17,8 @@ class Contact
         "#{@first} #{@last}"
     end
 
-    def set_phone(num)
-        @phone = num
+    def add_phone(num)
+        @phone << num
     end
 
     def phone

@@ -27,7 +27,9 @@ end
 def list_contact(int)
     print_contact = @book[int - 1]
     puts "#{print_contact.full}"
-    puts "\n#{print_contact.phone}"
+    print_contact.phone.each do |num|
+        puts num
+    end
     puts "#{print_contact.email}"
     puts "#{print_contact.address}\n\n"
 end
@@ -50,7 +52,7 @@ def add_contact
     contact = Contact.new(first, last)
     puts 'Please enter phone number'
     num = gets.chomp
-    contact.set_phone(num)
+    contact.add_phone(num)
     puts 'Please enter an email address.'
     email = gets.chomp
     contact.set_email(email)

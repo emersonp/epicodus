@@ -25,8 +25,8 @@ describe Contact do
     end
     it 'lets you read the phone number out' do
         test_person = Contact.new('Frank', 'Beans')
-        test_person.set_phone('5035551234')
-        test_person.phone.should eq '5035551234'
+        test_person.add_phone('5035551234')
+        test_person.phone.should eq ['5035551234']
     end
     it 'lets you read the email out' do
         test_person = Contact.new('Frank', 'Beans')
