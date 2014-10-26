@@ -1,3 +1,6 @@
+# Simple Address Book Program
+# Copyright (c) 2014 Parker Harris Emerson
+
 require './lib/contact.rb'
 
 @book = []
@@ -14,22 +17,30 @@ def main_menu
             exit
         elsif menu_choice == 'a'
             add_contact
+        else
+            list_contact(menu_choice.to_i)
         end
         print_contact_list
     end
 end
 
+def list_contact(int)
+    print_contact = @book[int - 1]
+    puts "#{print_contact.full}"
+    puts "\n#{print_contact.phone}"
+    puts "#{print_contact.email}"
+    puts "#{print_contact.address}\n\n"
+end
+
 def print_contact_list
     contact_num = 1
-    puts 'Num\tName'
+    puts "Num\tName"
     @book.each do |contact|
         puts "#{contact_num}\t#{contact.full}"
         contact_num += 1
     end
     puts"\n\n"
 end
-
-
 
 def add_contact
     puts 'Please enter first name.'
@@ -40,6 +51,9 @@ def add_contact
     puts 'Please enter phone number'
     num = gets.chomp
     contact.set_phone(num)
+    puts 'Please enter an email address.'
+    email = gets.chomp
+    contact.set_email(email)
     puts 'Please enter street.'
     street = gets.chomp
     puts 'Please enter city.'
