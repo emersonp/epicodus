@@ -1,5 +1,3 @@
-require 'pry'
-
 require './lib/term.rb'
 require './lib/word.rb'
 require './lib/definition.rb'
