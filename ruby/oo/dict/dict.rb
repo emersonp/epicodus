@@ -1,10 +1,14 @@
+require 'pry'
+
 require './lib/term.rb'
+require './lib/word.rb'
+require './lib/definition.rb'
 
 def add_term
     puts "Please enter a word:"
-    new_word = gets.chomp
+    new_word = Word.new(gets.chomp)
     puts "Please enter its definition:"
-    new_def = gets.chomp
+    new_def = Definition.new(gets.chomp)
     term = Term.new(new_word, new_def)
 end
 
@@ -16,13 +20,23 @@ def edit_term(term)
 end
 
 def full_def(term)
-    puts "#{term.word.capitalize}:\n\t#{term.definition}"
+    term.word.each do |word|
+        puts "#{word.vocable.capitalize} (#{word.language})"
+    end
+    defCount = 1
+    term.definition.each do |definition|
+        puts "#{defCount}. #{definition.meaning} #{definition.language})"
+    end
 end
 
 def list_terms(term_array)
     count = 1
     term_array.each do |term|
-        puts "#{count}. #{term.word}: #{term.definition}"
+        term.word.each do |word|
+            if word.language == "english"
+                puts "#{count}. #{word.vocable}"
+            end
+        end
         count += 1
     end
     puts ""
