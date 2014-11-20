@@ -13,10 +13,26 @@ def add_term
 end
 
 def edit_term(term)
-    puts "Current word is #{term.word}. Please enter a new word."
-    term.edit_word(gets.chomp)
-    puts "Current definition is\n\t'#{term.definition}'\nPlease enter a new definition."
-    term.edit_def(gets.chomp)
+    puts "Please choose a vocable to edit (enter 0 for none):"
+    count = 1
+    term.word.each do |word|
+        puts "#{count}. #{word.vocable}"
+    end
+    vocable_choice = gets.chomp.to_i
+    if vocable_choice != 0
+        puts "Please enter a new vocable for #{term.word[vocable_choice-1].vocable}:"
+        term.word[vocable_choice-1].set_vocable(gets.chomp)
+    end
+    puts "Please choose a meaning to edit (enter 0 for none):"
+    count = 1
+    term.definition.each do |definition|
+        puts "#{count}. #{definition.meaning}"
+    end
+    meaning_choice = gets.chomp.to_i
+    if meaning_choice != 0
+        puts "Please enter a new meaning for #{term.definition[meaning_choice-1].meaning}:"
+        term.definition[meaning_choice-1].set_def(gets.chomp)
+    end
 end
 
 def full_def(term)
@@ -25,7 +41,7 @@ def full_def(term)
     end
     defCount = 1
     term.definition.each do |definition|
-        puts "#{defCount}. #{definition.meaning} #{definition.language})"
+        puts "#{defCount}. #{definition.meaning} (#{definition.language})"
     end
 end
 
@@ -44,8 +60,10 @@ end
 
 def search_for_word(word_search)
     Term.all.each do |term|
-        if term.word.include? word_search
-            return term
+        term.word.each do |word|
+            if word.vocable.include? word_search
+                return term
+            end
         end
     end
     return 0
