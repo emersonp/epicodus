@@ -1,12 +1,17 @@
 require 'pg'
 
 class Task
-    def initialize(name)
+    def initialize(name, list_id)
         @name = name
+        @list_id = list_id
     end
 
     def name
         @name
+    end
+
+    def list_id
+        @list_id
     end
     
     def self.all
@@ -14,17 +19,18 @@ class Task
         tasks = []
         results.each do |result|
             name = result['name']
-            tasks << Task.new(name)
+            list_id = result['list_id'].to_i
+            tasks << Task.new(name, list_id)
         end
         tasks
     end
 
     def save
-        DB.exec("INSERT INTO tasks (name) VALUES ('#{@name}');")
+        DB.exec("INSERT INTO tasks (name, list_id) VALUES ('#{@name}', #{@list_id});")
     end
 
     def ==(another_task)
-        self.name == another_task.name
+        self.name == another_task.name && self.list_id == another_task.list_id
     end
 
 end

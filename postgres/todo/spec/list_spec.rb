@@ -1,22 +1,12 @@
-require 'rspec'
-require 'pg'
-require 'list'
-
-DB = PG.connect({:dbname => 'todo_test'})
-
-RSpec.configure do |config|
-    config.after(:each) do
-        DB.exec("DELETE FROM lists *;")
-    end
-end
+require 'spec_helper.rb'
 
 describe List do
     it 'starts off with no lists' do
         List.all.should eq []
     end
 
-    it 'is initialized with a name' do
-        list = List.new('Epicodus stuff')
+    it 'can be initialized with its database ID' do
+        list = List.new('Epicodus stuff', 1)
         list.should be_an_instance_of List
     end
     
@@ -36,4 +26,11 @@ describe List do
         list.save
         List.all.should eq [list]
     end
+
+    it 'sets its ID when you save it' do
+        list = List.new('learn SQL')
+        list.save
+        list.id.should be_an_instance_of Fixnum
+    end
+
 end
