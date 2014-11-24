@@ -45,6 +45,7 @@ end
 def menu
     puts "\nPress 'l' to create a new list, or 't' to create a new task."
     puts "Press 'd' to display a list, or 'a' to display all lists."
+    puts "Press '?' to search."
     puts "Press 'x' to exit."
     menu_choice = gets.chomp
     case menu_choice
