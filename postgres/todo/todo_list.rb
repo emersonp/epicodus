@@ -11,6 +11,18 @@ def display_all_lists
         puts "#{display_counter}. #{list.name}"
         display_counter += 1
     end
+    if display_counter == 1
+        puts "No active lists.\n"
+    end
+end
+
+def delete_list
+    puts "\nDelete which list?"
+    display_all_lists
+    puts "\n"
+    user_choice = gets.chomp.to_i
+    delete_choice = List.all[user_choice - 1]
+    delete_choice.delete
 end
 
 def display_list
@@ -19,8 +31,11 @@ def display_list
     puts "\n"
     user_choice = gets.chomp.to_i
     list_choice = List.all[user_choice - 1]
+    display_counter = 1
+    puts "\n"
     Task.all_from_list(list_choice.id).each do |task|
-        puts "#{task.name}"
+        puts "#{display_counter}. #{task.name}"
+        display_counter += 1
     end
 end
 
@@ -43,10 +58,11 @@ def new_task
 end
 
 def menu
-    puts "\nPress 'l' to create a new list, or 't' to create a new task."
-    puts "Press 'd' to display a list, or 'a' to display all lists."
-    puts "Press '?' to search."
-    puts "Press 'x' to exit."
+    puts "\nType 'l' to create a new list, or 't' to create a new task."
+    puts "Type 'd' to display a list, or 'a' to display all lists."
+    puts "Type 'DELETE' to delete a list and all of its tasks."
+    puts "Type '?' to search."
+    puts "Type 'x' to exit."
     menu_choice = gets.chomp
     case menu_choice
     when "l"
@@ -59,6 +75,8 @@ def menu
         display_all_lists
     when "x"
         quit_program
+    when "DELETE"
+        delete_list
     end
 end
 

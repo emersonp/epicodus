@@ -10,6 +10,16 @@ class List
         lists
     end
 
+    def self.is_empty?
+        lists = []
+        results = DB.exec("SELECT * FROM lists;")
+        results.each do |result|
+            name = result['name']
+            id = result['id'].to_i
+            lists << List.new(name, id)
+        end
+    end
+
     def ==(another_list)
         self.name == another_list.name && self.id == another_list.id
     end
@@ -30,5 +40,9 @@ class List
     def save
         results = DB.exec("INSERT INTO lists (name) VALUES ('#{@name}') RETURNING id;")
         @id = results.first['id'].to_i
+    end
+
+    def delete
+        results = DB.exec("DELETE FROM lists WHERE id = #{@id}")
     end
 end
