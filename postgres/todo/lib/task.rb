@@ -4,6 +4,7 @@ class Task
     def initialize(name, list_id)
         @name = name
         @list_id = list_id
+        @complete = false
     end
 
     def name
@@ -13,13 +14,18 @@ class Task
     def list_id
         @list_id
     end
+
+    def complete
+        @complete
+    end
     
     def self.all
-        results = DB.exec("SELECT * FROM tasks;")
+        results = DB.exec("SELECT * FROM tasks WHERE complete = false;")
         tasks = []
         results.each do |result|
             name = result['name']
             list_id = result['list_id'].to_i
+            complete = result['complete']
             tasks << Task.new(name, list_id)
         end
         tasks
@@ -31,13 +37,14 @@ class Task
         results.each do |result|
             name = result['name']
             list_id = result['list_id'].to_i
+            complete = result['complete']
             tasks << Task.new(name, list_id)
         end
         tasks
     end
 
     def save
-        DB.exec("INSERT INTO tasks (name, list_id) VALUES ('#{@name}', #{@list_id});")
+        DB.exec("INSERT INTO tasks (name, list_id, complete) VALUES ('#{@name}', #{@list_id}, #{@complete});")
     end
 
     def ==(another_task)

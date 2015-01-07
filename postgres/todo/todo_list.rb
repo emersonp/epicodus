@@ -37,6 +37,16 @@ def display_list
         puts "#{display_counter}. #{task.name}"
         display_counter += 1
     end
+    if display_counter == 1
+        puts "No active tasks in list \"#{list_choice.name}\"."
+    end
+end
+
+def mark_complete
+    display_list
+    puts "Mark complete which task?"
+    user_choice = gets.chomp.to_i
+    task_choice = Task.all[user_choice - 1]
 end
 
 def new_list
@@ -60,6 +70,7 @@ end
 def menu
     puts "\nType 'l' to create a new list, or 't' to create a new task."
     puts "Type 'd' to display a list, or 'a' to display all lists."
+    puts "Type 'm' to mark a task as complete."
     puts "Type 'DELETE' to delete a list and all of its tasks."
     puts "Type '?' to search."
     puts "Type 'x' to exit."
@@ -77,6 +88,8 @@ def menu
         quit_program
     when "DELETE"
         delete_list
+    when "m"
+        mark_complete
     end
 end
 
