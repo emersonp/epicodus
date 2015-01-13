@@ -33,7 +33,7 @@ def display_list
     list_choice = List.all[user_choice - 1]
     display_counter = 1
     puts "\n"
-    Task.all_from_list(list_choice.id).each do |task|
+    Task.all_complete_from_list(list_choice.id).each do |task|
         puts "#{display_counter}. #{task.name}"
         display_counter += 1
     end
@@ -47,6 +47,7 @@ def mark_complete
     puts "Mark complete which task?"
     user_choice = gets.chomp.to_i
     task_choice = Task.all[user_choice - 1]
+    task_choice.mark_complete
 end
 
 def new_list
