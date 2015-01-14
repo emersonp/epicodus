@@ -44,6 +44,6 @@ class List
 
     def delete
         results = DB.exec("DELETE FROM tasks WHERE list_id = #{@id};")
-        results = DB.exec("DELETE FROM lists WHERE id = #{@id}")
+        results = DB.exec("DELETE FROM lists WHERE id = #{@id};")
     end
 end
